@@ -61,6 +61,15 @@ create table if not exists public.shop_order_items (
   line_total_cents integer not null check (line_total_cents > 0)
 );
 
+create index if not exists shop_orders_user_id_idx
+  on public.shop_orders(user_id);
+
+create index if not exists shop_order_items_order_id_idx
+  on public.shop_order_items(order_id);
+
+create index if not exists shop_order_items_product_id_idx
+  on public.shop_order_items(product_id);
+
 alter table public.shop_products enable row level security;
 alter table public.shop_settings enable row level security;
 alter table public.shop_orders enable row level security;
