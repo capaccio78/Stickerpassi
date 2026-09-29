@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Stickerpassi — sticker originali, checkout semplice e pagamento sicuro.">
+  <title>Stickerpassi</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Stickerpassi home">
+      <span class="brand-mark">SP</span>
+      <span>Stickerpassi</span>
+    </a>
+    <nav class="nav-actions">
+      <button id="accountButton" class="ghost-btn" type="button">Accedi</button>
+      <button id="cartButton" class="cart-btn" type="button" aria-label="Apri carrello">
+        Carrello <span id="cartCount" class="count">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Piccoli sticker, grande personalità</p>
+        <h1>Attacca qualcosa che ti rappresenta.</h1>
+        <p class="hero-copy">Scegli i tuoi sticker, aggiungili al carrello e completa il pagamento in pochi passaggi.</p>
+        <a href="#catalogo" class="primary-link">Scopri gli sticker</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <span>★</span><span>☺</span><span>⚡</span><span>✿</span>
+      </div>
+    </section>
+
+    <section id="paymentReturn" class="notice hidden" aria-live="polite"></section>
+
+    <section id="catalogo" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Catalogo</p>
+          <h2>Sticker disponibili</h2>
+        </div>
+        <p id="shippingHint" class="muted"></p>
+      </div>
+      <div id="productGrid" class="product-grid">
+        <p class="muted">Caricamento prodotti…</p>
+      </div>
+    </section>
+
+    <section id="ordersSection" class="section hidden">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Account</p>
+          <h2>I tuoi ordini</h2>
+        </div>
+      </div>
+      <div id="ordersList" class="orders-list"></div>
+    </section>
+  </main>
+
+  <aside id="cartDrawer" class="drawer" aria-hidden="true">
+    <div class="drawer-panel">
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">Il tuo ordine</p>
+          <h2>Carrello</h2>
+        </div>
+        <button id="closeCartButton" class="icon-btn" type="button" aria-label="Chiudi">×</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="totals">
+        <div><span>Subtotale</span><strong id="cartSubtotal">€0,00</strong></div>
+        <div><span>Spedizione</span><strong id="cartShipping">—</strong></div>
+        <div class="grand-total"><span>Totale</span><strong id="cartTotal">€0,00</strong></div>
+      </div>
+      <button id="goCheckoutButton" class="primary-btn" type="button">Vai al checkout</button>
+    </div>
+  </aside>
+
+  <dialog id="authDialog">
+    <form method="dialog" class="dialog-card" id="authShell">
+      <button class="dialog-close" value="cancel" aria-label="Chiudi">×</button>
+      <p class="eyebrow">Account Stickerpassi</p>
+      <h2 id="authTitle">Accedi</h2>
+      <p class="muted" id="authSubtitle">Accedi per completare l'acquisto e ritrovare i tuoi ordini.</p>
+      <label>Email<input id="authEmail" type="email" autocomplete="email" required></label>
+      <label>Password<input id="authPassword" type="password" minlength="6" autocomplete="current-password" required></label>
+      <p id="authMessage" class="form-message" aria-live="polite"></p>
+      <button id="authSubmit" class="primary-btn" type="button">Accedi</button>
+      <button id="authSwitch" class="text-btn" type="button">Non hai un account? Registrati</button>
+    </form>
+  </dialog>
+
+  <dialog id="checkoutDialog">
+    <form method="dialog" class="dialog-card checkout-card" id="checkoutForm">
+      <button class="dialog-close" value="cancel" aria-label="Chiudi">×</button>
+      <p class="eyebrow">Checkout</p>
+      <h2>Dove spediamo?</h2>
+      <div class="form-grid">
+        <label class="full">Nome e cognome<input name="full_name" autocomplete="name" required></label>
+        <label class="full">Indirizzo<input name="address_line1" autocomplete="address-line1" required></label>
+        <label class="full">Interno / note indirizzo<input name="address_line2" autocomplete="address-line2"></label>
+        <label>CAP<input name="postal_code" inputmode="numeric" autocomplete="postal-code" required></label>
+        <label>Città<input name="city" autocomplete="address-level2" required></label>
+        <label>Provincia<input name="province" maxlength="2" autocomplete="address-level1"></label>
+        <label>Paese
+          <select name="country">
+            <option value="IT" selected>Italia</option>
+          </select>
+        </label>
+      </div>
+      <div class="checkout-summary">
+        <span>Totale da pagare</span>
+        <strong id="checkoutTotal">€0,00</strong>
+      </div>
+      <p class="payment-note">Il pagamento viene aperto sul flusso sicuro Satispay. Stickerpassi non vede né memorizza i dati del tuo wallet.</p>
+      <p id="checkoutMessage" class="form-message" aria-live="polite"></p>
+      <button id="payButton" class="primary-btn" type="submit">Paga con Satispay</button>
+    </form>
+  </dialog>
+
+  <footer>
+    <strong>Stickerpassi</strong>
+    <span>Pagamenti sicuri · Account protetto da Supabase Auth</span>
+  </footer>
+
+  <script src="./config.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
